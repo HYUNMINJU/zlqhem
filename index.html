@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Layout with Shortcut Highlight</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 키보드 전체 레이아웃 */
+    .keyboard {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 10px;
+      background-color: #333;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 각 키 스타일 */
+    .key {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      background-color: #444;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 크기가 큰 키 */
+    .key.large {
+      width: 100px;
+    }
+
+    /* 스페이스바 */
+    .key.space {
+      width: 300px;
+    }
+
+    /* 버튼 스타일 */
+    .button-container {
+      display: flex; /* 플렉스 컨테이너로 설정 */
+      justify-content: center; /* 중앙 정렬 */
+      margin-top: 20px; /* 키보드와 버튼 사이 간격 */
+    }
+
+    .button {
+      flex: 1; /* 버튼이 균등하게 공간을 차지하도록 설정 */
+      margin: auto; /* 버튼 사이의 여백 */
+      padding: 10px;
+      font-size: 16px;
+    }
+
+
+    #copyBtn, #pasteBtn #returnBtn #selectBtn #groupBtn #saveBtn {
+      display: inline-block; /* 버튼을 나란히 배치 */
+      margin: auto; /* 버튼 사이 간격 */
+      padding: 10px;
+      font-size: 16px;
+      background-color: #35abdd;
+      color: #074161;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* 버튼 hover 효과 */
+    #copyBtn:hover, #pasteBtn:hover #returnBtn #selectBtn #groupBtn #saveBtn {
+      background-color: #0660ba;
+    }
+
+    /* 키보드 내부의 행 */
+    .row {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="keyboard">
+    <!-- 첫 번째 줄: 숫자 및 기능 키 -->
+    <div class="row">
+      <div class="key">Esc</div>
+      <div class="key">F1</div>
+      <div class="key">F2</div>
+      <div class="key">F3</div>
+      <div class="key">F4</div>
+      <div class="key">F5</div>
+      <div class="key">F6</div>
+      <div class="key">F7</div>
+      <div class="key">F8</div>
+      <div class="key">F9</div>
+      <div class="key">F10</div>
+      <div class="key">F11</div>
+      <div class="key">F12</div>
+    </div>
+
+    <!-- 두 번째 줄: 숫자, 특수문자, 백스페이스 -->
+    <div class="row">
+      <div class="key">~</div>
+      <div class="key">1</div>
+      <div class="key">2</div>
+      <div class="key">3</div>
+      <div class="key">4</div>
+      <div class="key">5</div>
+      <div class="key">6</div>
+      <div class="key">7</div>
+      <div class="key">8</div>
+      <div class="key">9</div>
+      <div class="key">0</div>
+      <div class="key">-</div>
+      <div class="key">=</div>
+      <div class="key large">Backspace</div>
+    </div>
+
+    <!-- 세 번째 줄: Tab 및 QWERTY -->
+    <div class="row">
+      <div class="key large">Tab</div>
+      <div class="key">Q</div>
+      <div class="key">W</div>
+      <div class="key">E</div>
+      <div class="key">R</div>
+      <div class="key">T</div>
+      <div class="key">Y</div>
+      <div class="key">U</div>
+      <div class="key">I</div>
+      <div class="key">O</div>
+      <div class="key">P</div>
+      <div class="key">[</div>
+      <div class="key">]</div>
+      <div class="key">\</div>
+    </div>
+
+    <!-- 네 번째 줄: Caps Lock 및 ASDF -->
+    <div class="row">
+      <div class="key large">Caps Lock</div>
+      <div class="key" id="a-key">A</div>
+      <div class="key" id="s-key">S</div>
+      <div class="key">D</div>
+      <div class="key">F</div>
+      <div class="key" id="g-key">G</div>
+      <div class="key">H</div>
+      <div class="key">J</div>
+      <div class="key">K</div>
+      <div class="key">L</div>
+      <div class="key">;</div>
+      <div class="key">'</div>
+      <div class="key large">Enter</div>
+    </div>
+
+    <!-- 다섯 번째 줄: Shift 및 ZXCV -->
+    <div class="row">
+      <div class="key large">Shift</div>
+      <div class="key" id="z-key">Z</div>
+      <div class="key">X</div>
+      <div class="key" id="c-key">C</div> <!-- C 키에 ID 추가 -->
+      <div class="key" id="v-key">V</div> <!-- V 키에 ID 추가 -->
+      <div class="key">B</div>
+      <div class="key">N</div>
+      <div class="key">M</div>
+      <div class="key">,</div>
+      <div class="key">.</div>
+      <div class="key">/</div>
+      <div class="key large">Shift</div>
+    </div>
+
+    <!-- 여섯 번째 줄: Ctrl, Alt 및 Space -->
+    <div class="row">
+      <div class="key large" id="ctrl">Ctrl</div> <!-- 왼쪽 Ctrl 키에 ID 추가 -->
+      <div class="key large">Alt</div>
+      <div class="key space">Space</div>
+      <div class="key large">Alt</div>
+      <div class="key large">Ctrl</div>
+    </div>
+  </div>
+
+  <!-- 버튼들 -->
+  <div class="button-container">
+    <button id="copyBtn">복사하기</button>
+    <button id="pasteBtn">붙여넣기</button>
+    <button id="returnBtn">되돌리기</button>
+    <button id="selectBtn">전체선택</button>
+    <button id="groupBtn">그룹만들기</button>
+    <button id="saveBtn">저장하기</button>
+  </div>
+
+  <script>
+    // 모든 키의 색상을 초기화하는 함수
+    function resetKeyColors() {
+      const keys = document.querySelectorAll('.key');
+      keys.forEach(key => {
+        key.style.backgroundColor = ''; // 모든 키의 배경색을 초기화
+      });
+    }
+
+    // 복사하기 버튼 클릭 이벤트
+    document.getElementById("copyBtn").addEventListener("click", function() {
+      resetKeyColors(); // 모든 키의 색상 초기화
+      document.getElementById("ctrl").style.backgroundColor = "#67D5B5"; // Ctrl 키 빨간색으로 변경
+      document.getElementById("c-key").style.backgroundColor = "#67D5B5"; // C 키 빨간색으로 변경
+    });
+
+    // 붙여넣기 버튼 클릭 이벤트
+    document.getElementById("pasteBtn").addEventListener("click", function() {
+      resetKeyColors(); // 모든 키의 색상 초기화
+      document.getElementById("ctrl").style.backgroundColor = "#EE7785"; // Ctrl 키 녹색으로 변경
+      document.getElementById("v-key").style.backgroundColor = "#EE7785"; // V 키 녹색으로 변경
+    });
+
+    // 되돌리기 버튼 클릭 이벤트
+    document.getElementById("returnBtn").addEventListener("click", function() {
+      resetKeyColors(); // 모든 키의 색상 초기화
+      document.getElementById("ctrl").style.backgroundColor = "#C89EC4"; // Ctrl 키 녹색으로 변경
+      document.getElementById("z-key").style.backgroundColor = "#C89EC4"; // V 키 녹색으로 변경
+    });
+
+    // 전체선택 버튼 클릭 이벤트
+    document.getElementById("selectBtn").addEventListener("click", function() {
+      resetKeyColors(); // 모든 키의 색상 초기화
+      document.getElementById("ctrl").style.backgroundColor = "#84B1ED"; // Ctrl 키 녹색으로 변경
+      document.getElementById("a-key").style.backgroundColor = "#84B1ED"; // V 키 녹색으로 변경
+    });
+
+    // 그룹만들기 버튼 클릭 이벤트
+    document.getElementById("groupBtn").addEventListener("click", function() {
+      resetKeyColors(); // 모든 키의 색상 초기화
+      document.getElementById("ctrl").style.backgroundColor = "#ED9282"; // Ctrl 키 녹색으로 변경
+      document.getElementById("g-key").style.backgroundColor = "#ED9282"; // V 키 녹색으로 변경
+    });
+
+    // 저장하기 버튼 클릭 이벤트
+    document.getElementById("saveBtn").addEventListener("click", function() {
+      resetKeyColors(); // 모든 키의 색상 초기화
+      document.getElementById("ctrl").style.backgroundColor = "#CFAA9E"; // Ctrl 키 녹색으로 변경
+      document.getElementById("s-key").style.backgroundColor = "#CFAA9E"; // V 키 녹색으로 변경
+    });
+  </script>
+</body>
+</html>
